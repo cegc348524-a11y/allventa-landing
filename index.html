@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Cuida tu salud visual con Allventa Óptica en Caracas. Evaluación optométrica, consulta oftalmológica, monturas, cristales y diagnóstico visual avanzado.">
+    <meta name="description" content="Cuida tu salud visual con Allventa Óptica en Caracas. Conoce nuestros servicios y el futuro Centro de Diagnóstico Visual, con OCT y tomografía previstos para 2027.">
     <meta name="theme-color" content="#202020">
     <meta property="og:title" content="Allventa Óptica | Hoy verás bonito">
-    <meta property="og:description" content="Atención visual, monturas y servicios de diagnóstico en Caracas.">
+    <meta property="og:description" content="Atención visual en Caracas. El Centro de Diagnóstico Visual, con OCT y tomografía, está previsto para 2027.">
     <meta property="og:type" content="website">
     <title>Allventa Óptica | Hoy verás bonito</title>
     <style>
@@ -197,6 +197,22 @@
         .services-feature { display: grid; grid-template-columns: .85fr 1.15fr; align-items: center; gap: clamp(1.5rem, 4vw, 3.5rem); margin-bottom: 2rem; }
         .services-feature img { width: 100%; max-height: 330px; border-radius: 1.35rem; object-fit: cover; }
         .services-feature p { margin-bottom: 0; color: var(--muted); }
+        .future-banner {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            padding: clamp(1.5rem, 4vw, 2.5rem);
+            border-radius: 1.2rem;
+            color: var(--white);
+            background: #202020;
+        }
+        .future-banner .eyebrow { margin-bottom: .55rem; color: #ccc; }
+        .future-banner h3 { margin-bottom: .55rem; color: var(--white); font-size: clamp(1.55rem, 3.2vw, 2.3rem); }
+        .future-banner p { max-width: 700px; margin-bottom: 0; color: #ddd; }
+        .service-card--future { border-color: #bbb; background: #eee; }
+        .service-year { display: inline-block; margin: 0 0 .65rem; color: #555; font-size: .72rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
 
         .frames-layout { display: grid; grid-template-columns: 1.05fr .95fr; align-items: center; gap: clamp(2rem, 5vw, 4rem); }
         .frames-content h2 { margin-bottom: 1rem; color: var(--primary-dark); font-size: clamp(2rem, 4vw, 3rem); }
@@ -287,6 +303,7 @@
             .header-row > .button { min-height: 42px; padding: .55rem .8rem; font-size: .78rem; }
             .hero { padding: 3.5rem 0 4rem; }
             .hero-grid, .services-feature, .frames-layout { grid-template-columns: 1fr; }
+            .future-banner { grid-template-columns: 1fr; }
             .hero h1 { font-size: clamp(2.6rem, 11vw, 4rem); }
             .hero-image-wrap { margin: 0 .5rem 1.25rem 0; }
             .hero-note { right: -.5rem; bottom: -1rem; }
@@ -366,9 +383,9 @@
                 <div class="hero-image-wrap">
                     <img class="hero-image" src="assets/examen-visual.png" width="1024" height="572" fetchpriority="high" alt="Profesional de salud visual realizando un examen ocular">
                     <div class="hero-note">
-                        <span class="hero-note-mark" aria-hidden="true">OCT</span>
-                        <strong>Centro de Diagnóstico Visual</strong>
-                        <span>Tecnología y atención para el cuidado de tu visión.</span>
+                        <span class="hero-note-mark" aria-hidden="true">2027</span>
+                        <strong>Próximamente: Centro de Diagnóstico Visual</strong>
+                        <span>Tomografía ocular (OCT) y ecografía, previstos para 2027.</span>
                     </div>
                 </div>
             </div>
@@ -377,7 +394,7 @@
         <section class="trust-strip" aria-label="Servicios destacados">
             <div class="container trust-grid">
                 <div class="trust-item"><span aria-hidden="true">◉</span><span>Evaluación optométrica</span></div>
-                <div class="trust-item"><span aria-hidden="true">⌕</span><span>Diagnóstico visual avanzado</span></div>
+                <div class="trust-item"><span aria-hidden="true">⌕</span><span>Centro de Diagnóstico Visual · 2027</span></div>
                 <div class="trust-item"><span aria-hidden="true">◇</span><span>Monturas y cristales</span></div>
             </div>
         </section>
@@ -424,18 +441,28 @@
                 </div>
                 <div class="services-feature">
                     <img src="assets/examen-visual.png" width="1024" height="572" loading="lazy" alt="Examen ocular realizado por una profesional de salud visual">
-                    <p>En Allventa encuentras evaluación optométrica, consulta oftalmológica y servicios de diagnóstico visual. Nuestro proyecto de Centro de Diagnóstico Visual incorpora tomografía ocular (OCT) y ecografía ocular.</p>
+                    <p>En Allventa encuentras evaluación optométrica, consulta oftalmológica y atención visual. Para 2027 estamos preparando nuestro Centro de Diagnóstico Visual, con tomografía ocular (OCT) y ecografía ocular.</p>
                 </div>
+                <aside class="future-banner" aria-labelledby="future-banner-title">
+                    <div>
+                        <p class="eyebrow">Una nueva mirada llega en 2027</p>
+                        <h3 id="future-banner-title">En 2027, veremos más por ti.</h3>
+                        <p>Estamos preparando una nueva etapa para el cuidado de tu visión: Centro de Diagnóstico Visual con tomografía ocular (OCT) y ecografía. Estos servicios estarán disponibles a partir de 2027. Escríbenos para conocer las novedades.</p>
+                    </div>
+                    <a class="button button-light" href="https://wa.me/584125917557?text=Hola%2C%20quiero%20recibir%20informaci%C3%B3n%20sobre%20el%20Centro%20de%20Diagn%C3%B3stico%20Visual%20previsto%20para%202027" target="_blank" rel="noopener noreferrer">Conocer más</a>
+                </aside>
                 <div class="service-grid">
-                    <article class="service-card">
+                    <article class="service-card service-card--future">
                         <span class="service-icon" aria-hidden="true">OCT</span>
+                        <span class="service-year">Próximamente · 2027</span>
                         <h3>Tomografía ocular</h3>
-                        <p>Estudio no invasivo de alta resolución para evaluar la retina y el nervio óptico.</p>
+                        <p>Prevista para 2027 como parte de nuestro futuro Centro de Diagnóstico Visual.</p>
                     </article>
-                    <article class="service-card">
+                    <article class="service-card service-card--future">
                         <span class="service-icon" aria-hidden="true">A/B/P</span>
+                        <span class="service-year">Próximamente · 2027</span>
                         <h3>Ecografía ocular</h3>
-                        <p>Evaluación biométrica y estructural de los segmentos anterior y posterior del ojo.</p>
+                        <p>Servicio de diagnóstico visual previsto para 2027. Consulta las novedades por WhatsApp.</p>
                     </article>
                     <article class="service-card">
                         <span class="service-icon" aria-hidden="true">VISIÓN</span>
