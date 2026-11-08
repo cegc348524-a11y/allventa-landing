@@ -1,27 +1,598 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Allventa Óptica | Centro Avanzado de Diagnóstico Visual</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Cuida tu salud visual con Allventa Óptica en Caracas. Evaluación optométrica, consulta oftalmológica, monturas, cristales y diagnóstico visual avanzado.">
+    <meta name="theme-color" content="#202020">
+    <meta property="og:title" content="Allventa Óptica | Hoy verás bonito">
+    <meta property="og:description" content="Atención visual, monturas y servicios de diagnóstico en Caracas.">
+    <meta property="og:type" content="website">
+    <title>Allventa Óptica | Hoy verás bonito</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; color: #111; text-align: center; }
-        header { background-color: #000; color: #fff; padding: 40px 20px; }
-        h1 { font-size: 2.5em; margin-bottom: 10px; }
-        p { font-size: 1.2em; color: #555; }
-        .container { max-width: 800px; margin: 40px auto; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        .btn { display: inline-block; background-color: #000; color: #fff; padding: 12px 25px; text-decoration: none; border-radius: 5px; margin-top: 20px; font-weight: bold; }
+        :root {
+            color-scheme: light;
+            --primary: #202020;
+            --primary-dark: #111;
+            --accent: #666;
+            --surface: #f7f7f7;
+            --surface-warm: #efefef;
+            --text: #202020;
+            --muted: #666;
+            --border: #dedede;
+            --white: #fff;
+            --font-sans: "Segoe UI Variable", "Segoe UI", Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: var(--font-sans);
+            color: var(--text);
+            background: var(--surface);
+            font-synthesis: none;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        *,
+        *::before,
+        *::after { box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; scroll-padding-top: 6rem; }
+        body { min-width: 320px; margin: 0; line-height: 1.65; }
+        img, video { display: block; max-width: 100%; }
+        a { color: inherit; }
+        h1, h2, h3, p { margin-top: 0; }
+        h1, h2, h3 { line-height: 1.15; letter-spacing: -.035em; text-wrap: balance; }
+        p { text-wrap: pretty; }
+        a:focus-visible, summary:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
+
+        .skip-link {
+            position: fixed;
+            top: .75rem;
+            left: .75rem;
+            z-index: 20;
+            transform: translateY(-160%);
+            padding: .7rem 1rem;
+            border-radius: .5rem;
+            color: var(--white);
+            background: var(--primary-dark);
+            font-weight: 700;
+        }
+        .skip-link:focus { transform: translateY(0); }
+        .container { width: min(1160px, calc(100% - 3rem)); margin-inline: auto; }
+        .eyebrow {
+            margin-bottom: .85rem;
+            color: var(--accent);
+            font-size: .76rem;
+            font-weight: 750;
+            letter-spacing: .13em;
+            text-transform: uppercase;
+        }
+        .button {
+            display: inline-flex;
+            min-height: 48px;
+            align-items: center;
+            justify-content: center;
+            gap: .55rem;
+            padding: .75rem 1.15rem;
+            border: 1px solid transparent;
+            border-radius: 999px;
+            font: inherit;
+            font-size: .92rem;
+            font-weight: 700;
+            line-height: 1.2;
+            text-align: center;
+            text-decoration: none;
+            transition: background-color .18s ease, color .18s ease, border-color .18s ease, transform .18s ease;
+        }
+        .button:hover { transform: translateY(-2px); }
+        .button-primary { color: var(--white); background: var(--primary); }
+        .button-primary:hover { background: var(--primary-dark); }
+        .button-light { color: var(--primary); border-color: var(--border); background: var(--white); }
+        .button-light:hover { border-color: var(--primary); background: #ededed; }
+        .button-accent { color: var(--white); background: var(--accent); }
+        .button-accent:hover { background: #444; }
+
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            border-bottom: 1px solid rgb(215 224 226 / 80%);
+            background: rgb(255 255 255 / 94%);
+            backdrop-filter: blur(14px);
+        }
+        .header-row { display: flex; min-height: 82px; align-items: center; justify-content: space-between; gap: 1.5rem; }
+        .brand { display: inline-flex; min-width: 0; align-items: center; gap: .6rem; text-decoration: none; }
+        .brand-logo { position: relative; display: block; width: 132px; height: 62px; overflow: hidden; flex: 0 0 auto; }
+        .brand-logo img { position: absolute; top: -60px; left: -35px; width: 200px; max-width: none; }
+        .brand-slogan { color: var(--muted); font-size: .84rem; font-weight: 600; white-space: nowrap; }
+        .desktop-nav { display: flex; align-items: center; gap: clamp(.8rem, 1.7vw, 1.5rem); }
+        .desktop-nav a, .mobile-nav a { color: var(--text); font-size: .88rem; font-weight: 650; text-decoration: none; }
+        .desktop-nav a:hover, .mobile-nav a:hover { color: var(--accent); }
+        .mobile-nav { display: none; }
+        .mobile-nav summary { color: var(--primary); cursor: pointer; font-weight: 750; list-style: none; }
+        .mobile-nav summary::-webkit-details-marker { display: none; }
+        .mobile-nav summary::after { content: "＋"; margin-left: .4rem; }
+        .mobile-nav details[open] summary::after { content: "−"; }
+        .mobile-nav ul {
+            position: absolute;
+            top: calc(100% - .25rem);
+            right: 1.5rem;
+            left: 1.5rem;
+            display: grid;
+            gap: .25rem;
+            margin: 0;
+            padding: .75rem;
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            background: var(--white);
+            box-shadow: 0 16px 40px rgb(30 41 59 / 12%);
+            list-style: none;
+        }
+        .mobile-nav a { display: block; padding: .65rem .75rem; }
+
+        .hero { position: relative; overflow: hidden; padding: clamp(4rem, 8vw, 7.5rem) 0; background: var(--white); }
+        .hero::before {
+            position: absolute;
+            top: -11rem;
+            right: -9rem;
+            width: 34rem;
+            height: 34rem;
+            border-radius: 50%;
+            background: #ededed;
+            content: "";
+        }
+        .hero-grid { position: relative; display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: clamp(2.5rem, 7vw, 6rem); }
+        .hero h1 { max-width: 630px; margin-bottom: 1.2rem; color: var(--primary-dark); font-size: clamp(2.8rem, 5.7vw, 5rem); letter-spacing: -.055em; }
+        .hero-copy { max-width: 560px; margin-bottom: 1.75rem; color: #555; font-size: clamp(1rem, 1.4vw, 1.13rem); }
+        .hero-actions { display: flex; flex-wrap: wrap; gap: .75rem; }
+        .hero-image-wrap { position: relative; }
+        .hero-image, .promotion-image, .services-feature img {
+            mix-blend-mode: multiply;
+            -webkit-mask-image: radial-gradient(ellipse at center, #000 58%, transparent 100%);
+            mask-image: radial-gradient(ellipse at center, #000 58%, transparent 100%);
+        }
+        .hero-image { width: 100%; aspect-ratio: 1.35; object-fit: cover; }
+        .hero-note {
+            position: absolute;
+            right: -1.25rem;
+            bottom: 2rem;
+            max-width: 230px;
+            padding: 1rem 1.15rem;
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            background: var(--white);
+            box-shadow: 0 12px 32px rgb(30 41 59 / 12%);
+        }
+        .hero-note strong { display: block; color: var(--primary); font-size: .95rem; }
+        .hero-note span { color: var(--muted); font-size: .82rem; }
+        .hero-note-mark { display: inline-grid; width: 2.2rem; height: 2.2rem; place-items: center; margin-bottom: .45rem; border-radius: .7rem; color: var(--primary); background: #ededed; font-size: .75rem; font-weight: 850; }
+
+        .trust-strip { padding: 1.1rem 0; color: var(--white); background: var(--primary); }
+        .trust-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; text-align: center; }
+        .trust-item { display: flex; align-items: center; justify-content: center; gap: .65rem; font-size: .92rem; font-weight: 650; }
+        .trust-item span:first-child { color: #ccc; font-size: 1.15rem; }
+
+        .section { padding: clamp(4rem, 7vw, 6.5rem) 0; }
+        .section-white { background: var(--white); }
+        .section-heading { max-width: 720px; margin: 0 auto 2.7rem; text-align: center; }
+        .section-heading .eyebrow { margin-bottom: .65rem; }
+        .section-heading h2 { margin-bottom: .8rem; color: var(--primary-dark); font-size: clamp(2rem, 4vw, 3.2rem); }
+        .section-heading p { margin-bottom: 0; color: var(--muted); }
+
+        .promotion-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
+        .promotion-card { display: grid; grid-template-columns: .95fr 1.05fr; overflow: hidden; border-radius: 1.35rem; background: var(--surface); }
+        .promotion-card:nth-child(2) { background: var(--surface-warm); }
+        .promotion-image { width: 100%; height: 100%; min-height: 250px; object-fit: cover; }
+        .promotion-content { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: clamp(1.25rem, 2.5vw, 2rem); }
+        .promotion-label { margin-bottom: .55rem; color: var(--accent); font-size: .72rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+        .promotion-content h3 { margin-bottom: .65rem; color: var(--primary-dark); font-size: clamp(1.25rem, 2vw, 1.65rem); }
+        .promotion-content p { margin-bottom: 1rem; color: var(--muted); font-size: .9rem; }
+        .promotion-price { margin: 0 0 1rem; color: var(--primary); font-size: 1.8rem; font-weight: 800; letter-spacing: -.05em; }
+        .promotion-note { margin: 1.25rem 0 0; color: var(--muted); font-size: .83rem; text-align: center; }
+
+        .service-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; }
+        .service-card { height: 100%; padding: 1.6rem; border: 1px solid var(--border); border-radius: 1.1rem; background: var(--surface); transition: transform .2s ease, box-shadow .2s ease; }
+        .service-card:hover { transform: translateY(-3px); box-shadow: 0 14px 32px rgb(22 78 99 / 9%); }
+        .service-icon { display: inline-grid; min-width: 3.2rem; height: 3.2rem; place-items: center; margin-bottom: 1.1rem; padding: 0 .45rem; border-radius: 1rem; color: var(--primary); background: #ededed; font-size: .82rem; font-weight: 850; }
+        .service-card h3 { margin-bottom: .65rem; color: var(--primary-dark); font-size: 1.16rem; }
+        .service-card p { margin-bottom: 0; color: var(--muted); font-size: .92rem; }
+        .services-feature { display: grid; grid-template-columns: .85fr 1.15fr; align-items: center; gap: clamp(1.5rem, 4vw, 3.5rem); margin-bottom: 2rem; }
+        .services-feature img { width: 100%; max-height: 330px; border-radius: 1.35rem; object-fit: cover; }
+        .services-feature p { margin-bottom: 0; color: var(--muted); }
+
+        .frames-layout { display: grid; grid-template-columns: 1.05fr .95fr; align-items: center; gap: clamp(2rem, 5vw, 4rem); }
+        .frames-content h2 { margin-bottom: 1rem; color: var(--primary-dark); font-size: clamp(2rem, 4vw, 3rem); }
+        .frames-content > p { margin-bottom: 1.5rem; color: var(--muted); }
+        .frames-points { display: grid; grid-template-columns: 1fr 1fr; gap: .85rem; }
+        .frames-point { padding: 1rem; border: 1px solid var(--border); border-radius: .9rem; background: var(--white); }
+        .frames-point strong { display: block; margin-bottom: .25rem; color: var(--primary-dark); font-size: .93rem; }
+        .frames-point span { color: var(--muted); font-size: .85rem; }
+        .frames-video { margin: 0; overflow: hidden; border: 1px solid var(--border); border-radius: 1.3rem; background: var(--white); box-shadow: 0 18px 40px rgb(30 41 59 / 8%); }
+        .frames-video video { width: 100%; max-height: 600px; aspect-ratio: 9 / 13; background: var(--surface-warm); object-fit: contain; }
+        .frames-video figcaption { padding: .85rem 1rem; color: var(--muted); font-size: .86rem; }
+
+        .multifocal-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+        .multifocal-card { padding: 1.45rem; border-left: 3px solid var(--accent); border-radius: .25rem .9rem .9rem .25rem; background: var(--surface); }
+        .multifocal-card h3 { margin-bottom: .5rem; color: var(--primary-dark); font-size: 1.08rem; }
+        .multifocal-card p { margin-bottom: 0; color: var(--muted); font-size: .92rem; }
+        .section-action { margin-top: 2rem; text-align: center; }
+
+        .allies-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+        .ally-card { display: grid; min-height: 210px; place-items: center; padding: 1.2rem; border: 1px solid var(--border); border-radius: 1.1rem; background: var(--white); }
+        .ally-card img { width: min(100%, 220px); height: 140px; object-fit: contain; }
+        .ally-card h3 { margin: .8rem 0 0; color: var(--primary-dark); font-size: .9rem; letter-spacing: .08em; text-align: center; text-transform: uppercase; }
+
+        .team-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+        .team-card { padding: clamp(1.5rem, 3vw, 2rem); border: 1px solid var(--border); border-radius: 1.1rem; background: var(--surface); }
+        .team-card h3 { margin-bottom: .55rem; color: var(--primary-dark); font-size: 1.35rem; }
+        .team-card p { margin-bottom: 0; color: var(--muted); }
+
+        .locations-section { color: var(--white); background: var(--primary-dark); }
+        .locations-section .section-heading h2 { color: var(--white); }
+        .locations-section .section-heading p { color: #ccc; }
+        .locations-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.1rem; }
+        .location-card { padding: clamp(1.5rem, 3vw, 2.2rem); border: 1px solid rgb(255 255 255 / 18%); border-radius: 1.2rem; background: rgb(255 255 255 / 7%); }
+        .location-type { display: inline-block; margin-bottom: .7rem; color: #ccc; font-size: .74rem; font-weight: 750; letter-spacing: .11em; text-transform: uppercase; }
+        .location-card h3 { margin-bottom: .7rem; color: var(--white); font-size: 1.5rem; }
+        .location-address, .location-description { color: #ddd; font-size: .95rem; }
+        .location-hours { margin-top: 1.2rem; padding-top: 1rem; border-top: 1px solid rgb(255 255 255 / 18%); }
+        .location-hours strong { display: block; margin-bottom: .35rem; color: var(--white); }
+        .location-hours p { margin: 0; color: #ddd; font-size: .92rem; }
+
+        .closing-cta { padding: 3.5rem 0; background: var(--surface-warm); text-align: center; }
+        .closing-cta h2 { margin-bottom: .7rem; color: var(--primary-dark); font-size: clamp(1.8rem, 3.7vw, 2.6rem); }
+        .closing-cta p { max-width: 600px; margin: 0 auto 1.3rem; color: var(--muted); }
+        .site-footer { padding: 2rem 0; color: #ccc; background: #171717; text-align: center; font-size: .86rem; }
+        .footer-socials { display: flex; flex-wrap: wrap; justify-content: center; gap: .7rem 1.5rem; margin-bottom: 1rem; }
+        .footer-socials a { color: var(--white); font-weight: 650; text-decoration: none; }
+        .footer-socials a:hover { text-decoration: underline; text-underline-offset: .2em; }
+        .site-footer p { margin: .25rem 0; }
+
+        .whatsapp-float {
+            position: fixed;
+            right: 1.25rem;
+            bottom: 1.25rem;
+            z-index: 9;
+            display: grid;
+            width: 3.6rem;
+            height: 3.6rem;
+            place-items: center;
+            border: 3px solid var(--white);
+            border-radius: 50%;
+            color: var(--white);
+            background: #333;
+            box-shadow: 0 8px 26px rgb(30 41 59 / 24%);
+            text-decoration: none;
+            transition: transform .18s ease, background-color .18s ease;
+        }
+        .whatsapp-float:hover { transform: translateY(-3px); background: #111; }
+        .whatsapp-float svg { width: 1.55rem; height: 1.55rem; }
+
+        @media (max-width: 980px) {
+            .desktop-nav { gap: .8rem; }
+            .desktop-nav a { font-size: .8rem; }
+            .header-row > .button { padding-inline: .85rem; font-size: .82rem; }
+            .hero-grid { gap: 2.5rem; }
+            .hero-note { right: -.5rem; }
+            .promotion-card { grid-template-columns: 1fr; }
+            .promotion-image { height: 210px; min-height: 0; }
+            .service-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        }
+        @media (max-width: 720px) {
+            .container { width: min(100% - 2rem, 560px); }
+            .header-row { min-height: 70px; gap: .6rem; }
+            .brand-logo { width: 106px; height: 55px; }
+            .brand-logo img { top: -52px; left: -30px; width: 172px; }
+            .brand-slogan { max-width: 94px; font-size: .78rem; line-height: 1.2; white-space: normal; }
+            .desktop-nav { display: none; }
+            .mobile-nav { display: block; margin-left: auto; }
+            .header-row > .button { min-height: 42px; padding: .55rem .8rem; font-size: .78rem; }
+            .hero { padding: 3.5rem 0 4rem; }
+            .hero-grid, .services-feature, .frames-layout { grid-template-columns: 1fr; }
+            .hero h1 { font-size: clamp(2.6rem, 11vw, 4rem); }
+            .hero-image-wrap { margin: 0 .5rem 1.25rem 0; }
+            .hero-note { right: -.5rem; bottom: -1rem; }
+            .trust-grid { grid-template-columns: 1fr; gap: .55rem; }
+            .trust-item { justify-content: flex-start; }
+            .promotion-grid, .locations-grid, .team-grid { grid-template-columns: 1fr; }
+            .promotion-card { grid-template-columns: .8fr 1.2fr; }
+            .promotion-image { height: 100%; min-height: 240px; }
+            .multifocal-grid { grid-template-columns: 1fr; }
+            .frames-video { width: min(100%, 400px); margin-inline: auto; }
+            .frames-video video { aspect-ratio: 9 / 13; }
+        }
+        @media (max-width: 460px) {
+            .container { width: min(100% - 1.5rem, 560px); }
+            .brand { gap: .35rem; }
+            .brand-logo { width: 76px; }
+            .brand-logo img { left: -38px; }
+            .brand-slogan { max-width: 76px; font-size: .7rem; }
+            .header-row > .button { padding-inline: .55rem; font-size: .72rem; }
+            .mobile-nav ul { right: .75rem; left: .75rem; }
+            .hero-actions { display: grid; }
+            .hero-actions .button { width: 100%; }
+            .promotion-card { grid-template-columns: 1fr; }
+            .promotion-image { height: 210px; min-height: 0; }
+            .service-grid, .frames-points, .allies-grid { grid-template-columns: 1fr; }
+            .service-card { padding: 1.35rem; }
+            .whatsapp-float { right: .85rem; bottom: .85rem; width: 3.2rem; height: 3.2rem; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+        }
     </style>
 </head>
 <body>
-    <header>
-        <h1>allventa</h1>
-        <p>Hoy verás bonito</p>
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+    <header class="site-header">
+        <div class="container header-row">
+            <a class="brand" href="#inicio" aria-label="Allventa Óptica, inicio">
+                <span class="brand-logo"><img src="assets/allventa-logo.png" alt=""></span>
+                <span class="brand-slogan">Hoy verás bonito</span>
+            </a>
+            <nav class="desktop-nav" aria-label="Navegación principal">
+                <a href="#servicios">Servicios</a>
+                <a href="#monturas">Monturas</a>
+                <a href="#aliados">Aliados</a>
+                <a href="#equipo">Equipo</a>
+                <a href="#ubicaciones">Sedes</a>
+            </nav>
+            <a class="button button-primary" href="https://wa.me/584125917557?text=Hola%2C%20quisiera%20agendar%20una%20consulta%20en%20Allventa%20%C3%93ptica" target="_blank" rel="noopener noreferrer">Agendar cita</a>
+            <nav class="mobile-nav" aria-label="Navegación móvil">
+                <details>
+                    <summary>Menú</summary>
+                    <ul>
+                        <li><a href="#servicios">Servicios</a></li>
+                        <li><a href="#monturas">Monturas y cristales</a></li>
+                        <li><a href="#aliados">Nuestros aliados</a></li>
+                        <li><a href="#equipo">Equipo</a></li>
+                        <li><a href="#ubicaciones">Ubicaciones</a></li>
+                    </ul>
+                </details>
+            </nav>
+        </div>
     </header>
-    <div class="container">
-        <h2>Consulta Oftalmológica y Diagnóstico Avanzado</h2>
-        <p>Evaluación profesional de tu salud visual y atención personalizada en nuestras sedes de Caracas (C.C. Galerías El Recreo y C.C. Propatria).</p>
-        <a href="https://wa.me/" class="btn">Agendar Cita por WhatsApp</a>
-    </div>
+
+    <main id="contenido">
+        <section class="hero" id="inicio" aria-labelledby="hero-title">
+            <div class="container hero-grid">
+                <div>
+                    <p class="eyebrow">Allventa Óptica · Caracas</p>
+                    <h1 id="hero-title">Tu visión merece atención experta.</h1>
+                    <p class="hero-copy">Evaluación optométrica integral, consulta oftalmológica y opciones para cuidar tu salud visual en cada etapa.</p>
+                    <div class="hero-actions">
+                        <a class="button button-primary" href="https://wa.me/584125917557?text=Hola%2C%20deseo%20informaci%C3%B3n%20sobre%20los%20ex%C3%A1menes%20visuales" target="_blank" rel="noopener noreferrer">Consulta por WhatsApp</a>
+                        <a class="button button-light" href="#ubicaciones">Conoce nuestras sedes</a>
+                    </div>
+                </div>
+                <div class="hero-image-wrap">
+                    <img class="hero-image" src="assets/examen-visual.png" width="1024" height="572" fetchpriority="high" alt="Profesional de salud visual realizando un examen ocular">
+                    <div class="hero-note">
+                        <span class="hero-note-mark" aria-hidden="true">OCT</span>
+                        <strong>Centro de Diagnóstico Visual</strong>
+                        <span>Tecnología y atención para el cuidado de tu visión.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="trust-strip" aria-label="Servicios destacados">
+            <div class="container trust-grid">
+                <div class="trust-item"><span aria-hidden="true">◉</span><span>Evaluación optométrica</span></div>
+                <div class="trust-item"><span aria-hidden="true">⌕</span><span>Diagnóstico visual avanzado</span></div>
+                <div class="trust-item"><span aria-hidden="true">◇</span><span>Monturas y cristales</span></div>
+            </div>
+        </section>
+
+        <section class="section section-white" id="promociones" aria-labelledby="promotions-title">
+            <div class="container">
+                <div class="section-heading">
+                    <p class="eyebrow">Especial para ti</p>
+                    <h2 id="promotions-title">Promociones Allventa</h2>
+                    <p>Opciones para renovar tus lentes y disfrutar de una nueva forma de ver.</p>
+                </div>
+                <div class="promotion-grid">
+                    <article class="promotion-card">
+                        <img class="promotion-image" src="assets/personas-con-monturas.png" width="1024" height="687" loading="lazy" alt="Tres personas usando diferentes estilos de monturas">
+                        <div class="promotion-content">
+                            <span class="promotion-label">Oferta especial</span>
+                            <h3>¡Estrena la montura que quieras!</h3>
+                            <p>Cristales para visión sencilla, examen optométrico y estuche. Paga a tasa BCV o con Cashea.</p>
+                            <div class="promotion-price">$31,60</div>
+                            <a class="button button-accent" href="https://wa.me/584125917557?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20la%20oferta%20de%20montura%20por%2031%2C60" target="_blank" rel="noopener noreferrer">Consultar oferta</a>
+                        </div>
+                    </article>
+                    <article class="promotion-card">
+                        <img class="promotion-image" src="assets/lentes-fotocromaticos.png" width="1024" height="572" loading="lazy" alt="Lentes fotocromáticos mostrados en tonos claros y oscuros">
+                        <div class="promotion-content">
+                            <span class="promotion-label">Oferta especial</span>
+                            <h3>Lentes fotocromáticos</h3>
+                            <p>De visión sencilla con Blue o AR.</p>
+                            <div class="promotion-price">$61,60</div>
+                            <a class="button button-accent" href="https://wa.me/584125917557?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20los%20lentes%20fotocrom%C3%A1ticos%20de%20visi%C3%B3n%20sencilla%20con%20Blue%20o%20AR%20por%2061%2C60" target="_blank" rel="noopener noreferrer">Consultar oferta</a>
+                        </div>
+                    </article>
+                </div>
+                <p class="promotion-note">Confirma vigencia, condiciones y disponibilidad de las promociones por WhatsApp.</p>
+            </div>
+        </section>
+
+        <section class="section" id="servicios" aria-labelledby="services-title">
+            <div class="container">
+                <div class="section-heading">
+                    <p class="eyebrow">Cuidamos de tus ojos</p>
+                    <h2 id="services-title">Servicios visuales y diagnóstico</h2>
+                    <p>Atención personalizada y tecnología para acompañar el cuidado de tu salud visual.</p>
+                </div>
+                <div class="services-feature">
+                    <img src="assets/examen-visual.png" width="1024" height="572" loading="lazy" alt="Examen ocular realizado por una profesional de salud visual">
+                    <p>En Allventa encuentras evaluación optométrica, consulta oftalmológica y servicios de diagnóstico visual. Nuestro proyecto de Centro de Diagnóstico Visual incorpora tomografía ocular (OCT) y ecografía ocular.</p>
+                </div>
+                <div class="service-grid">
+                    <article class="service-card">
+                        <span class="service-icon" aria-hidden="true">OCT</span>
+                        <h3>Tomografía ocular</h3>
+                        <p>Estudio no invasivo de alta resolución para evaluar la retina y el nervio óptico.</p>
+                    </article>
+                    <article class="service-card">
+                        <span class="service-icon" aria-hidden="true">A/B/P</span>
+                        <h3>Ecografía ocular</h3>
+                        <p>Evaluación biométrica y estructural de los segmentos anterior y posterior del ojo.</p>
+                    </article>
+                    <article class="service-card">
+                        <span class="service-icon" aria-hidden="true">VISIÓN</span>
+                        <h3>Examen visual integral</h3>
+                        <p>Refracción computarizada y fórmula óptica personalizada para visión sencilla o multifocal.</p>
+                    </article>
+                    <article class="service-card">
+                        <span class="service-icon" aria-hidden="true">OFT.</span>
+                        <h3>Consulta oftalmológica</h3>
+                        <p>Atención oftalmológica para evaluar tu salud visual.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-white" id="monturas" aria-labelledby="frames-title">
+            <div class="container frames-layout">
+                <div class="frames-content">
+                    <p class="eyebrow">Óptica para tu día a día</p>
+                    <h2 id="frames-title">Monturas y cristales a tu medida</h2>
+                    <p>Encuentra opciones para tu estilo y necesidades visuales, con asesoría optométrica y atención en nuestras sedes.</p>
+                    <div class="frames-points">
+                        <div class="frames-point"><strong>Variedad de monturas</strong><span>Opciones para diferentes estilos y preferencias.</span></div>
+                        <div class="frames-point"><strong>Cristales ópticos</strong><span>Alternativas para fórmulas sencillas o multifocales.</span></div>
+                        <div class="frames-point"><strong>Laboratorio propio</strong><span>Servicio de biselado en nuestra tienda del CC Galerías El Recreo.</span></div>
+                        <div class="frames-point"><strong>Entrega rápida</strong><span>Consulta disponibilidad y tiempos en la sede.</span></div>
+                    </div>
+                </div>
+                <figure class="frames-video">
+                    <video poster="assets/monturas-portada.jpg" playsinline controls preload="metadata" aria-label="Video de monturas de Allventa">
+                        <source src="assets/monturas-web.webm" type="video/webm">
+                        <source src="assets/monturas-web.mp4" type="video/mp4">
+                        Tu navegador no permite reproducir este video.
+                    </video>
+                    <figcaption>Descubre nuestras monturas.</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <section class="section" id="multifocales" aria-labelledby="multifocal-title">
+            <div class="container">
+                <div class="section-heading">
+                    <p class="eyebrow">Una solución versátil</p>
+                    <h2 id="multifocal-title">Lentes multifocales digitales</h2>
+                    <p>Una opción para ver a diferentes distancias con un solo par de lentes.</p>
+                </div>
+                <div class="multifocal-grid">
+                    <article class="multifocal-card">
+                        <h3>¿Cómo funcionan?</h3>
+                        <p>Combinan gradualmente zonas de visión lejana, intermedia y cercana, sin una línea visible entre ellas.</p>
+                    </article>
+                    <article class="multifocal-card">
+                        <h3>Diseño digital</h3>
+                        <p>Su diseño se calcula con tecnología digital. Según el lente elegido, puede considerar tu fórmula y medidas de montaje.</p>
+                    </article>
+                    <article class="multifocal-card">
+                        <h3>Asesoría y adaptación</h3>
+                        <p>Te ayudamos a elegir según tus necesidades visuales. La adaptación varía entre personas y puede tomar un tiempo.</p>
+                    </article>
+                </div>
+                <div class="section-action">
+                    <a class="button button-primary" href="https://wa.me/584125917557?text=Hola%2C%20quisiera%20informaci%C3%B3n%20sobre%20los%20multifocales%20digitales" target="_blank" rel="noopener noreferrer">Consultar sobre multifocales</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-white" id="aliados" aria-labelledby="allies-title">
+            <div class="container">
+                <div class="section-heading">
+                    <p class="eyebrow">Calidad en cada detalle</p>
+                    <h2 id="allies-title">Nuestros aliados</h2>
+                    <p>Marcas que nos acompañan en el cuidado de tu salud visual.</p>
+                </div>
+                <div class="allies-grid">
+                    <article class="ally-card"><img src="assets/novax.jpg" width="400" height="260" loading="lazy" alt="Logo de Novak, lentes digitales Freeform"><h3>Novak</h3></article>
+                    <article class="ally-card"><img src="assets/rodenstock.jpg" width="400" height="260" loading="lazy" alt="Logo de Rodenstock"><h3>Rodenstock</h3></article>
+                    <article class="ally-card"><img src="assets/liberty.jpg" width="400" height="260" loading="lazy" alt="Logo de Cristales Liberty"><h3>Liberty</h3></article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="equipo" aria-labelledby="team-title">
+            <div class="container">
+                <div class="section-heading">
+                    <p class="eyebrow">Atención cercana</p>
+                    <h2 id="team-title">Un equipo para cuidar tu visión</h2>
+                    <p>Recibe orientación profesional según tus necesidades visuales.</p>
+                </div>
+                <div class="team-grid">
+                    <article class="team-card">
+                        <h3>Nuestros optometristas</h3>
+                        <p>Evaluación optométrica integral y orientación para tus necesidades visuales.</p>
+                    </article>
+                    <article class="team-card">
+                        <h3>Nuestras oftalmólogas</h3>
+                        <p>Atención oftalmológica especializada para acompañarte en el cuidado de tu salud visual.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section locations-section" id="ubicaciones" aria-labelledby="locations-title">
+            <div class="container">
+                <div class="section-heading">
+                    <p class="eyebrow">Estamos en Caracas</p>
+                    <h2 id="locations-title">Visítanos en nuestras sedes</h2>
+                    <p>Escríbenos para confirmar disponibilidad y coordinar tu visita.</p>
+                </div>
+                <div class="locations-grid">
+                    <article class="location-card">
+                        <span class="location-type">Sede principal</span>
+                        <h3>CC Galerías El Recreo</h3>
+                        <p class="location-address">Locales MC1-18, 20, 21 y 23, Sabana Grande, Caracas.</p>
+                        <div class="location-hours">
+                            <strong>Horario de atención</strong>
+                            <p>Lunes a sábado: 10:00 a. m. a 6:00 p. m.</p>
+                            <p>Domingos y feriados: 12:00 p. m. a 5:00 p. m.</p>
+                        </div>
+                    </article>
+                    <article class="location-card">
+                        <span class="location-type">Sucursal retail</span>
+                        <h3>CC Propatria</h3>
+                        <p class="location-address">Nivel 4, al lado del SAREN, Propatria, Caracas.</p>
+                        <p class="location-description">Examen optométrico, variedad de monturas y entrega rápida de cristales.</p>
+                        <div class="location-hours">
+                            <strong>Horario de atención</strong>
+                            <p>Lunes a sábado: 10:00 a. m. a 4:00 p. m.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="closing-cta" aria-labelledby="closing-title">
+            <div class="container">
+                <h2 id="closing-title">Hoy verás bonito</h2>
+                <p>¿Tienes dudas o quieres agendar una consulta? Nuestro equipo puede orientarte por WhatsApp.</p>
+                <a class="button button-primary" href="https://wa.me/584125917557?text=Hola%2C%20quisiera%20informaci%C3%B3n%20de%20Allventa%20%C3%93ptica" target="_blank" rel="noopener noreferrer">Hablemos por WhatsApp</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <nav class="footer-socials" aria-label="Redes sociales">
+                <a href="https://www.instagram.com/allventa/" target="_blank" rel="noopener noreferrer">Instagram: @allventa</a>
+                <a href="https://www.tiktok.com/@allventaoptica" target="_blank" rel="noopener noreferrer">TikTok: @allventaoptica</a>
+            </nav>
+            <p>&copy; 2026 Allventa Óptica. Todos los derechos reservados.</p>
+            <p>Allventa&reg; es una marca registrada de Allventa VE, C.A. J-411535591.</p>
+        </div>
+    </footer>
+    <a class="whatsapp-float" href="https://wa.me/584125917557?text=Hola%2C%20quisiera%20informaci%C3%B3n" target="_blank" rel="noopener noreferrer" aria-label="Contactar a Allventa Óptica por WhatsApp">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M20 11.7a8.1 8.1 0 0 1-12 7.1L4 20l1.2-3.8A8.1 8.1 0 1 1 20 11.7Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M9 8.4c.2-.4.4-.4.7-.4h.4c.2 0 .3.1.4.4l.7 1.7c.1.2 0 .4-.1.6l-.5.6c-.2.2-.2.4 0 .6.4.7 1 1.3 1.7 1.7.2.1.4.1.6-.1l.6-.7c.2-.2.4-.2.6-.1l1.6.8c.3.1.4.2.4.4 0 .2-.1.9-.5 1.3-.4.4-1 .6-1.6.5-.6-.1-1.5-.4-2.6-1.1-1.3-.8-2.2-1.9-2.6-2.5-.4-.7-.7-1.5-.6-2.1.1-.6.5-1.3.8-1.6Z" fill="currentColor"/>
+        </svg>
+    </a>
 </body>
 </html>
